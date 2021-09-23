@@ -3,7 +3,7 @@ require 'csv'
 module Geocoder
   extend self
 
-  DATA_PATH = Rails.root.join('db/data/city.csv')
+  DATA_PATH = Application.root.concat('/db/data/city.csv')
 
   def geocode(city)
     data[city]

@@ -3,11 +3,10 @@
 class GeocoderRoutes < Application
   namespace '/v1' do
     get do
-      geocoder_params = validate_with!(GeocoderParamsContract)
-      data = Geocoder::Service.call(geocoder_params)
-      serializer = GeocoderSerializer.new(data)
+      params = validate_with!(GeocoderParamsContract)
+      data = Geocoder.geocode(params[:city])
 
-      json serializer.serializable_hash
+      json data
     end
   end
 end
