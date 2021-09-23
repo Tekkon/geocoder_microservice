@@ -1,0 +1,4 @@
+ru:
+  services:
+    geocoder:
+      error: 'Не удалось определить координаты'
