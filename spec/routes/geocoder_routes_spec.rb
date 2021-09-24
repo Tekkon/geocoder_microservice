@@ -12,7 +12,7 @@ RSpec.describe GeocoderRoutes, type: :routes do
           get '/v1/geocode', city: city
 
           expect(last_response.status).to eq 200
-          expect(response_body).to eq coords
+          expect(response_body['meta']).to include('coordinates' => coords)
         end
       end
 
@@ -23,7 +23,7 @@ RSpec.describe GeocoderRoutes, type: :routes do
           get '/v1/geocode', city: city
 
           expect(last_response.status).to eq 200
-          expect(response_body).to eq nil
+          expect(response_body['meta']).to include('coordinates' => nil)
         end
       end
     end
