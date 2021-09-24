@@ -2,7 +2,7 @@
 
 class GeocoderRoutes < Application
   namespace '/v1' do
-    get do
+    get '/geocode' do
       params = validate_with!(GeocoderParamsContract)
       data = Geocoder.geocode(params[:city])
 

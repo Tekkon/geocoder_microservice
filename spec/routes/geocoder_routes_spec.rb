@@ -1,5 +1,5 @@
 RSpec.describe GeocoderRoutes, type: :routes do
-  describe 'GET /v1' do
+  describe 'GET /v1/geocode' do
     context 'valid params' do
       let(:city) { 'Москва' }
 
@@ -9,7 +9,7 @@ RSpec.describe GeocoderRoutes, type: :routes do
         it 'returns coordinates' do
           allow(Geocoder).to receive(:geocode).with(city).and_return coords
 
-          get '/v1', city: city
+          get '/v1/geocode', city: city
 
           expect(last_response.status).to eq 200
           expect(response_body).to eq coords
@@ -20,7 +20,7 @@ RSpec.describe GeocoderRoutes, type: :routes do
         it 'returns nil' do
           allow(Geocoder).to receive(:geocode).with(city).and_return nil
 
-          get '/v1', city: city
+          get '/v1/geocode', city: city
 
           expect(last_response.status).to eq 200
           expect(response_body).to eq nil
@@ -30,7 +30,7 @@ RSpec.describe GeocoderRoutes, type: :routes do
 
     context 'invalid params' do
       it 'returns 422' do
-        get '/v1'
+        get '/v1/geocode'
 
         expect(last_response.status).to eq 422
       end
