@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'i18n'
 
 I18n.load_path += Dir[Application.root.concat('/config/locales/**/*.yml')]
 I18n.available_locales = %i[en ru]
