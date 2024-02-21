@@ -5,12 +5,10 @@ queue.subscribe(manual_ack: true) do |delivery_info, properties, payload|
   payload = JSON(payload)
   coordinates = Geocoder.geocode(payload['city'])
 
-  p payload
-
-  # if coordinates.present?
-  #   client = AdsService::RpcClient.fetch
-  #   client.update_coordinates(payload['id'], coordinates)
-  # end
+  if coordinates.present?
+    client = AdsService::RpcClient.fetch
+    client.update_coordinates(payload['id'], coordinates)
+  end
 
   channel.ack(delivery_info.delivery_tag)
 end

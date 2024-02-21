@@ -1,4 +1,5 @@
 require 'dry-initializer'
+require 'securerandom'
 require_relative 'rpc_api'
 
 module AdsService
@@ -17,13 +18,17 @@ module AdsService
 
     def start
       @reply_queue.subscribe do |delivery_info, properties, payload|
-        @lock.synchronize { @condition.signal }
+        if properties[:correlation_id] == @correlation_id
+          @lock.synchronize { @condition.signal }
+        end
       end
 
       self
     end
 
     private
+
+    attr_writer :correlation_id
 
     def create_queue
       channel = RabbitMq.channel
@@ -36,10 +41,16 @@ module AdsService
     end
 
     def publish(payload, opts = {})
+      self.correlation_id = SecureRandom.uuid
+
       @lock.synchronize do
         @queue.publish(
           payload,
-          opts.merge(app_id: 'geocoder', reply_to: @reply_queue.name)
+          opts.merge(
+            app_id: 'geocoder',
+            correlation_id: @correlation_id,
+            reply_to: @reply_queue.name
+          )
         )
 
         @condition.wait(@lock)
