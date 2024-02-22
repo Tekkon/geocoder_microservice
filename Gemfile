@@ -11,6 +11,7 @@ gem 'fast_jsonapi', '~> 1.5'
 gem 'rake', '~> 13.0.1'
 
 gem 'bunny', '~> 2.15.0'
+gem 'ougai', '~> 1.8.5'
 
 gem 'i18n', '~> 1.8.2'
 gem 'config', '~> 2.2.1'
