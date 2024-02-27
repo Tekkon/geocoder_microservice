@@ -1,7 +1,14 @@
 require 'ougai'
 
+logdev =
+  if Application.environment == :production
+    STDOUT
+  else
+    Application.root.concat('/', Settings.logger.path)
+  end
+
 logger = Ougai::Logger.new(
-  Application.root.concat('/', Settings.logger.path),
+  logdev,
   level: Settings.logger.level
 )
 
