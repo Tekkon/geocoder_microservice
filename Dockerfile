@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-alpine
+FROM --platform=linux/amd64 ruby:2.7.2-alpine
 
 RUN apk add --no-cache \
   build-base \
