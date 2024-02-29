@@ -10,7 +10,7 @@
       delegate_to: 127.0.0.1
       docker_image:
         build:
-          path: ./
+          path: ../
           pull: no
         name: '{{ image }}'
         source: build
