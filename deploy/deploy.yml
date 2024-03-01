@@ -8,13 +8,8 @@
         timestamp: '{{ lookup("pipe", "date -u +%Y%m%d%H%M%S") }}'
     - name: build docker image
       delegate_to: 127.0.0.1
-      docker_image:
-        build:
-          path: ../
-          pull: no
-        name: '{{ image }}'
-        source: build
-        force_source: yes
+      shell: |
+        docker build -t geocoder ../
     - name: save image to file
       delegate_to: 127.0.0.1
       docker_image:
