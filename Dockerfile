@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 50051
 
-CMD ["bin/puma"]
+CMD ["bin/app"]
