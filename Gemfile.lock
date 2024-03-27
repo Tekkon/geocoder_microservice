@@ -55,6 +55,13 @@ GEM
       activesupport (>= 4.2.0)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
+    google-protobuf (3.25.3-arm64-darwin)
+    googleapis-common-protos-types (1.14.0)
+      google-protobuf (~> 3.18)
+    grpc (1.62.0-arm64-darwin)
+      google-protobuf (~> 3.25)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.62.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     minitest (5.14.4)
@@ -98,6 +105,8 @@ DEPENDENCIES
   dry-validation (~> 1.5.0)
   factory_bot (~> 5.2.0)
   fast_jsonapi (~> 1.5)
+  grpc
+  grpc-tools
   i18n (~> 1.8.2)
   ougai (~> 1.8.5)
   prometheus-client (~> 2.1.0)

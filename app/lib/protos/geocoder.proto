@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package geocoder;
+
+service GeocoderService {
+  rpc Geocode (City) returns (Coordinates) {}
+}
+
+message City {
+  string name = 1;
+}
+
+message Coordinates {
+  float lat = 1;
+  float lon = 2;
+}
