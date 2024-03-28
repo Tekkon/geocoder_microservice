@@ -1,8 +1,6 @@
 FROM --platform=linux/amd64 ruby:2.7.2-alpine
 
-RUN apk add --no-cache \
-  build-base \
-  tzdata
+RUN apk add --no-cache build-base tzdata git
 
 WORKDIR /usr/src/app
 
@@ -16,4 +14,4 @@ COPY . .
 
 EXPOSE 50051
 
-CMD ["bin/app"]
+CMD ["bin/puma"]
